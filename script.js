@@ -173,17 +173,108 @@ if (window.location.hash === "#birthday") {
 }
 
 // ==========================================================================
-// VIDEO EXPERIENCE: Custom Glowing Play Button
+// BACKGROUND MUSIC WITH AUTOMATIC PLAYBACK & AUDIO DUCKING
+// ==========================================================================
+
+const bgMusic = document.getElementById("bg-music");
+const musicToggleBtn = document.getElementById("music-toggle-btn");
+const musicIcon = document.getElementById("music-icon");
+const musicText = document.getElementById("music-text");
+
+let isMusicMuted = false;
+const NORMAL_MUSIC_VOLUME = 0.6;
+const DUCKED_MUSIC_VOLUME = 0.12;
+
+function setMusicVolumeSmoothly(targetVol, durationMs = 500) {
+    if (!bgMusic || isMusicMuted) return;
+    const startVol = bgMusic.volume;
+    const startTime = performance.now();
+    function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / durationMs, 1);
+        bgMusic.volume = startVol + (targetVol - startVol) * progress;
+        if (progress < 1) {
+            requestAnimationFrame(step);
+        }
+    }
+    requestAnimationFrame(step);
+}
+
+function updateMusicToggleState(isPlaying) {
+    if (!musicToggleBtn) return;
+    if (isPlaying) {
+        musicToggleBtn.classList.remove("muted");
+        if (musicIcon) musicIcon.classList.add("spinning");
+        if (musicText) musicText.textContent = "Music On";
+    } else {
+        musicToggleBtn.classList.add("muted");
+        if (musicIcon) musicIcon.classList.remove("spinning");
+        if (musicText) musicText.textContent = "Music Off";
+    }
+}
+
+function tryStartMusic() {
+    if (!bgMusic) return;
+    bgMusic.volume = NORMAL_MUSIC_VOLUME;
+    bgMusic.play().then(() => {
+        updateMusicToggleState(true);
+    }).catch(() => {
+        // If modern browser restricts immediate unprompted audio autoplay,
+        // unlock and start playing on the very first touch or click anywhere
+        const startOnFirstAction = () => {
+            bgMusic.play().then(() => {
+                updateMusicToggleState(true);
+            }).catch(() => {});
+            document.removeEventListener("click", startOnFirstAction);
+            document.removeEventListener("touchstart", startOnFirstAction);
+            document.removeEventListener("keydown", startOnFirstAction);
+        };
+        document.addEventListener("click", startOnFirstAction, { once: true });
+        document.addEventListener("touchstart", startOnFirstAction, { once: true });
+        document.addEventListener("keydown", startOnFirstAction, { once: true });
+    });
+}
+
+// Start immediately on load
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", tryStartMusic);
+} else {
+    tryStartMusic();
+}
+
+// Music toggle click handler
+if (musicToggleBtn) {
+    musicToggleBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (!bgMusic) return;
+        if (bgMusic.paused) {
+            isMusicMuted = false;
+            bgMusic.volume = NORMAL_MUSIC_VOLUME;
+            bgMusic.play();
+            updateMusicToggleState(true);
+        } else {
+            isMusicMuted = true;
+            bgMusic.pause();
+            updateMusicToggleState(false);
+        }
+    });
+}
+
+// ==========================================================================
+// VIDEO EXPERIENCE: Custom Glowing Play Button & Auto-Ducking
 // ==========================================================================
 
 function playBirthdayVideo() {
     if (videoPlayer) {
         videoPlayer.play().then(() => {
             if (playOverlay) playOverlay.classList.add("hidden");
+            // Duck background music so video speech/sound is heard clearly
+            setMusicVolumeSmoothly(DUCKED_MUSIC_VOLUME);
         }).catch((err) => {
             console.log("Video play request handled:", err);
             if (playOverlay) playOverlay.classList.add("hidden");
             videoPlayer.play();
+            setMusicVolumeSmoothly(DUCKED_MUSIC_VOLUME);
         });
     }
 }
@@ -201,12 +292,17 @@ if (customPlayBtn) {
 if (videoPlayer) {
     videoPlayer.addEventListener("play", () => {
         if (playOverlay) playOverlay.classList.add("hidden");
+        // Duck sound small automatically when video plays
+        setMusicVolumeSmoothly(DUCKED_MUSIC_VOLUME);
     });
     videoPlayer.addEventListener("pause", () => {
-        // Keep controls active; overlay only shows if video ends
+        // Restore music volume smoothly when video pauses
+        setMusicVolumeSmoothly(NORMAL_MUSIC_VOLUME);
     });
     videoPlayer.addEventListener("ended", () => {
         if (playOverlay) playOverlay.classList.remove("hidden");
+        // Restore music volume smoothly when video finishes
+        setMusicVolumeSmoothly(NORMAL_MUSIC_VOLUME);
     });
 }
 

@@ -14,6 +14,19 @@
     />
   </head>
   <body>
+    <!-- Background Audio Player (Auto-plays on open, ducks when video plays) -->
+    <audio id="bg-music" loop preload="auto">
+      <source src="bg-music.m4a" type="audio/mp4" />
+      <source src="bg-music.mp4" type="audio/mp4" />
+      <source src="Diego%20Gonzalez%20-%20Thank%20You%20For%20Everything%20(lyrics).mp4" type="audio/mp4" />
+    </audio>
+
+    <!-- Floating Ambient Music Control -->
+    <button id="music-toggle-btn" class="music-toggle-btn" title="Toggle Music" aria-label="Toggle Music">
+      <span class="music-icon spinning" id="music-icon">🎵</span>
+      <span id="music-text">Music On</span>
+    </button>
+
     <!-- Standalone Birthday Confession Slide -->
     <div id="birthday-slide" class="birthday-slide-container" style="display: flex">
       <!-- Ambient Sparkle Canvas -->

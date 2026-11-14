@@ -12,6 +12,50 @@ body {
     overflow-x: hidden;
 }
 
+/* Floating Music Toggle Pill */
+.music-toggle-btn {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 14px;
+    color: #b82245;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    border: 1.5px solid #ffb3c6;
+    border-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(220, 40, 85, 0.18);
+    z-index: 10000;
+    transition: all 0.25s ease;
+}
+
+.music-toggle-btn:hover {
+    transform: scale(1.06);
+    background: #ffffff;
+    box-shadow: 0 6px 20px rgba(220, 40, 85, 0.28);
+}
+
+.music-toggle-btn.muted {
+    opacity: 0.65;
+    border-color: #d1b4bc;
+    color: #885c68;
+}
+
+.music-icon.spinning {
+    display: inline-block;
+    animation: rotateMusic 4s infinite linear;
+}
+
+@keyframes rotateMusic {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* Envelope Screen */
 #envelope-container {
     text-align: center;
