@@ -74,22 +74,22 @@ yesBtn.addEventListener("click", () => {
 
     finalText.style.display = "block";
 
-    // Reveal button to go to Slide 3: Birthday Surprise
-    const confessionContainer = document.getElementById("confession-link-container");
-    if (confessionContainer) {
-        confessionContainer.style.display = "flex";
+    // Reveal prominent Next Button container
+    const nextContainer = document.getElementById("next-action-container");
+    if (nextContainer) {
+        nextContainer.style.display = "flex";
     }
 
-    // Reveal tap/click anywhere to skip hint
-    const skipHint = document.getElementById("tap-skip-hint");
-    if (skipHint) {
-        skipHint.style.display = "block";
+    // Reveal floating skip button in bottom corner
+    const floatingSkip = document.getElementById("floating-skip-btn");
+    if (floatingSkip) {
+        floatingSkip.style.display = "inline-flex";
     }
 
     triggerFloatingHearts();
 });
 
-// Skip to Birthday Slide when clicking background or anywhere in final state
+// Skip to Birthday Slide when clicking background, floating button, or window in final state
 letter.addEventListener("click", (e) => {
     // If already in final state (after Yes is clicked)
     if (isFinalState) {
@@ -102,12 +102,20 @@ letter.addEventListener("click", (e) => {
     }
 });
 
+// Keyboard skip (space, enter, arrow)
+document.addEventListener("keydown", (e) => {
+    if (isFinalState && (e.key === " " || e.key === "Enter" || e.key === "ArrowRight")) {
+        showBirthdaySlide();
+    }
+});
+
 // ==========================================================================
 // SLIDE NAVIGATION: Valentine Letter -> Birthday Slide -> For Samriddhi
 // ==========================================================================
 
 const birthdaySlide = document.getElementById("birthday-slide");
-const btnGotoBirthday = document.getElementById("btn-goto-birthday");
+const btnNextSlide = document.getElementById("btn-next-slide");
+const floatingSkipBtn = document.getElementById("floating-skip-btn");
 const btnBackToLetter = document.getElementById("btn-back-to-letter");
 const videoPlayer = document.getElementById("birthday-video-player");
 const playOverlay = document.getElementById("video-play-overlay");
@@ -117,6 +125,9 @@ const btnContinueLetter = document.getElementById("btn-continue-letter");
 function showBirthdaySlide() {
     envelope.style.display = "none";
     letter.style.display = "none";
+    const floatingSkip = document.getElementById("floating-skip-btn");
+    if (floatingSkip) floatingSkip.style.display = "none";
+
     birthdaySlide.style.display = "flex";
     window.scrollTo({ top: 0, behavior: "smooth" });
     startBirthdayCanvasParticles();
@@ -126,14 +137,25 @@ function showBirthdaySlide() {
 function showLetterSlide() {
     birthdaySlide.style.display = "none";
     letter.style.display = "flex";
+    if (isFinalState) {
+        const floatingSkip = document.getElementById("floating-skip-btn");
+        if (floatingSkip) floatingSkip.style.display = "inline-flex";
+    }
     if (videoPlayer && !videoPlayer.paused) {
         videoPlayer.pause();
     }
 }
 
-if (btnGotoBirthday) {
-    btnGotoBirthday.addEventListener("click", (e) => {
-        e.preventDefault();
+if (btnNextSlide) {
+    btnNextSlide.addEventListener("click", (e) => {
+        e.stopPropagation();
+        showBirthdaySlide();
+    });
+}
+
+if (floatingSkipBtn) {
+    floatingSkipBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
         showBirthdaySlide();
     });
 }

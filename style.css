@@ -115,8 +115,13 @@ p {
 }
 
 .letter-window.final {
-    padding-top: 85px;
-    gap: 2px;
+    padding-top: 70px;
+    padding-bottom: 24px;
+    height: auto;
+    min-height: 460px;
+    aspect-ratio: auto;
+    gap: 3px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
 .letter-window.final h1 {
@@ -125,8 +130,81 @@ p {
 }
 
 .letter-window.final .cat {
-    width: 110px;
-    margin: 2px 0 4px 0;
+    width: 100px;
+    margin: 2px 0;
+}
+
+/* Prominent Next Action Container */
+.next-action-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+    z-index: 25;
+}
+
+.primary-next-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 24px;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #ff1a53 0%, #ff5277 100%);
+    border: 2px solid #ffffff;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255, 26, 83, 0.55), 0 0 15px rgba(255, 107, 139, 0.4);
+    animation: pulseGlow 1.8s infinite ease-in-out;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    z-index: 26;
+}
+
+.primary-next-btn:hover {
+    transform: scale(1.06);
+    box-shadow: 0 8px 28px rgba(255, 26, 83, 0.75);
+    background: linear-gradient(135deg, #e60039 0%, #ff3b68 100%);
+}
+
+.skip-helper-text {
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 13px !important;
+    color: #a32240;
+    margin: 3px 0 0 0 !important;
+    opacity: 0.9;
+    text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Floating Next Slide Button in Bottom Right */
+.floating-skip-btn {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 11px 22px;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #ff1a53 0%, #ff5277 100%);
+    border: 2px solid #ffffff;
+    border-radius: 30px;
+    box-shadow: 0 6px 22px rgba(220, 20, 60, 0.5), 0 0 16px rgba(255, 105, 180, 0.4);
+    cursor: pointer;
+    z-index: 9999;
+    animation: pulseGlow 2s infinite ease-in-out;
+    transition: transform 0.2s ease;
+}
+
+.floating-skip-btn:hover {
+    transform: scale(1.08) translateY(-2px);
+    box-shadow: 0 8px 28px rgba(220, 20, 60, 0.7);
 }
 
 /* buttons */

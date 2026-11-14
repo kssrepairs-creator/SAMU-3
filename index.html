@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css?v=4" />
     <title>Valentine & Birthday Letter for Princess</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -39,19 +39,19 @@
           <strong>Valentine Date:</strong> RAMSTERDAM CAFE at 7pm, 2nd nov 2027. Matching outflit
         </p>
 
-        <!-- Button to Advance to Slide 3: Birthday Confession Slide -->
-        <div id="confession-link-container" class="confession-link-container" style="display: none">
-          <p class="love-note">Wait Samuu... I have a special birthday surprise for you 🎀</p>
-          <button class="confession-btn" id="btn-goto-birthday">
-            <span>🎂 Open Birthday Surprise for Princess 🎀 ➔</span>
+        <!-- Prominent Next Button to Birthday Slide -->
+        <div id="next-action-container" class="next-action-container" style="display: none">
+          <button class="primary-next-btn" id="btn-next-slide">
+            <span>Next: Birthday Surprise 🎀 ➔</span>
           </button>
+          <p class="skip-helper-text">(or click anywhere in the background to skip)</p>
         </div>
       </div>
 
-      <!-- Floating Skip Hint -->
-      <div id="tap-skip-hint" class="tap-skip-hint" style="display: none">
-        ✨ Click anywhere in the background to continue 🎀 ✨
-      </div>
+      <!-- Floating Skip Button in Bottom Corner -->
+      <button id="floating-skip-btn" class="floating-skip-btn" style="display: none" title="Skip to Birthday Surprise">
+        <span>Next Slide ➔</span>
+      </button>
     </div>
 
     <!-- Slide 3: Beautiful Emotional Birthday Confession Slide (Between Valentine & For Samriddhi) -->
@@ -144,6 +144,6 @@
       </main>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=4"></script>
   </body>
 </html>
