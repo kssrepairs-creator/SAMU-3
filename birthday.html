@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Happy Birthday Princess 🎀❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aldrich&family=Pixelify+Sans:wght@400..700&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Standalone Birthday Confession Slide -->
+    <div id="birthday-slide" class="birthday-slide-container" style="display: flex">
+      <!-- Ambient Sparkle Canvas -->
+      <canvas id="birthday-canvas" class="birthday-canvas"></canvas>
+
+      <!-- Navigation Bar -->
+      <header class="birthday-nav">
+        <a href="index.html" class="nav-back-pill" title="Back to Valentine Letter">
+          <span>← Valentine Letter 💌</span>
+        </a>
+        <span class="slide-indicator">🎀 Slide 2 of 3 · Birthday Surprise 🎀</span>
+      </header>
+
+      <!-- Main Birthday Card -->
+      <main class="birthday-card">
+        <!-- Pixel Bow Badge -->
+        <div class="birthday-badge">
+          <span class="badge-sparkle">✨</span>
+          <span>A Special Wish for Someone Unforgettable</span>
+          <span class="badge-sparkle">✨</span>
+        </div>
+
+        <!-- Main Prominent Headline -->
+        <h1 class="birthday-main-title">Happy Belated Birthday, Princess! 🎀❤️</h1>
+
+        <!-- Sub Message -->
+        <p class="birthday-sub-message">
+          I know I'm a little late, but that doesn't change how special you are to me. I hope your birthday was as beautiful and wonderful as you are.
+        </p>
+
+        <!-- Emotional Highlight Banner -->
+        <div class="emotional-highlight-box">
+          <span class="pulse-heart">❤️</span>
+          <h2 class="emotional-highlight-text">I LOVE YOU SO MUCH, PRINCESS. ❤️</h2>
+          <span class="pulse-heart">❤️</span>
+        </div>
+
+        <!-- Video Experience Frame -->
+        <section class="video-experience-section" aria-label="Birthday Video for Princess">
+          <!-- Floating decorative corner icons -->
+          <div class="frame-deco deco-tl" aria-hidden="true">💖</div>
+          <div class="frame-deco deco-tr" aria-hidden="true">💕</div>
+          <div class="frame-deco deco-bl" aria-hidden="true">🌸</div>
+          <div class="frame-deco deco-br" aria-hidden="true">✨</div>
+
+          <div class="video-frame-wrapper" id="video-frame-wrapper">
+            <video
+              id="birthday-video-player"
+              class="birthday-video-player"
+              src="birthday.mp4"
+              playsinline
+              preload="metadata"
+              controls
+            ></video>
+
+            <!-- Custom Glowing Pink Play Button Overlay -->
+            <div id="video-play-overlay" class="video-play-overlay" title="Play Video for Princess">
+              <button class="glowing-play-btn" id="btn-custom-play" aria-label="Play Birthday Video">
+                <span class="play-arrow">▶</span>
+                <span class="glow-pulse-ring"></span>
+              </button>
+              <span class="play-btn-caption">Play Video for Princess 🎀</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Extra Romantic Touches -->
+        <section class="extra-romantic-section">
+          <div class="rose-divider" aria-hidden="true">
+            <span class="divider-line"></span>
+            <span class="rose-icons">🌹 ✨ 🌹</span>
+            <span class="divider-line"></span>
+          </div>
+
+          <p class="extra-romantic-quote">
+            "One more thing, Princess... No matter how late this wish is, my love and appreciation for you will never be late. You deserve all the happiness in the world. ❤️"
+          </p>
+
+          <!-- Glowing Button: Continue to For Samriddhi Slide -->
+          <div class="continue-action-box">
+            <a href="for-her.html" class="continue-letter-btn" id="btn-continue-letter">
+              <span class="btn-sparkle">✨</span>
+              <span class="btn-label">Continue to My Letter 💌</span>
+              <span class="btn-arrow">➔</span>
+            </a>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
